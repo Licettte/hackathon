@@ -1,0 +1,133 @@
+:root{
+    --bg-1: #ECEFF2;
+    --bg-2: #E7EBEE;
+        --surface: #FFFFFFCC;
+        --text: #0F172A;
+        --accent: rgba(32, 104, 165, 0.72);
+        --accent-hover: #3A8DAA;
+    --primary-color: #0e3649;
+    --bright-color: #e5e3d8;
+    /*--background-color: #000000;   !* было #101113 *!*/
+    /*--background-color: #0f212b;   !* было #101113 *!/*/
+    --background-color: #262626;   /* было #101113 */
+    --dark-text-color: #0f2632;   /* было #101113 */
+    --primary-text-color: #e7e3d8;   /* было #101113 */
+    --secondary-text-color: #707f8a;   /* было #101113 */
+
+    --light-color: #fefefe;
+    --light-xs-color: #b2b5b9;
+    --dark-s-color: #3f4650;
+    /*--dark-m-color: #0663ef;       !* цвет иконок svg *!*/
+    --dark-m-color: #8fb2ea;       /* цвет иконок svg */
+    --dark-l-color: #00064a;
+    --dark-xl-color: #00032e;
+    --dark-xxl-color: #101114;
+
+
+    --font-regular-5-size: 0.5rem;
+    --font-regular-7-size: 0.7rem;
+    --font-regular-9-size: 0.9rem;
+    --font-regular-10-size: 1rem;
+
+
+    --font-regular-17-size: 1.7rem;
+    --font-regular-17-weight: 400;
+
+    --font-semi-20-size: 2rem;       /* 20px */
+    --font-semi-20-weight: 600;
+
+    --font-bold-16-size: 1.6rem;     /* 25px */
+    --font-bold-25-size: 2.5rem;     /* 25px */
+    --font-bold-25-weight: 700;
+
+    --mobile: 480px;
+    --tablet: 726px;
+    --desktop: 1120px;
+}
+
+
+html {
+    font-size:20px;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+/* Тело страницы: центрируем контент и ограничиваем ширину */
+body {
+    margin: 0;
+    height: 100%;
+    background: var(--background-color);
+    color: var(--primary-text-color);
+    font-family: Inter, "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 25px;
+
+}
+
+/* Ссылки */
+a {
+    color: inherit;
+    text-decoration: inherit;
+    cursor: pointer;
+}
+
+/* Списки */
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;          /* чтобы flex-wrap работал */
+    flex-wrap: wrap;
+}
+li {
+    font-size: var(--font-regular-17-size);
+    font-weight: var(--font-regular-17-weight);
+    color: var(--primary-text-color);
+    padding: 0 0 1.4rem 0;  /* 14px */
+}
+
+/* Кнопки — объединение твоих правил и базового PWA-стайла */
+button {
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+}
+
+
+img { vertical-align: top; }
+
+
+h1 {
+    font-size: var(--font-bold-25-size);
+    font-weight: var(--font-bold-25-weight);
+    margin: 0;
+}
+h2 {
+    font-size: var(--font-semi-20-size);
+    font-weight: var(--font-semi-20-weight);
+    margin: 0;
+    color: var(--dark-m-color);
+}
+
+@media (max-width: var(--mobile)) {
+    h2 {
+        font-size: 3em;  /
+        font-weight: 700;
+        margin: 0 4.4rem; /* 44px */
+    }
+}
+h3, h4, h5 {
+    font-size: 1.75rem;
+    margin: 0;
+}
+h6 {
+    font-size: var(--font-regular-17-size);
+    font-weight: var(--font-regular-17-weight);
+    margin: 0;
+    padding: 0;
+}

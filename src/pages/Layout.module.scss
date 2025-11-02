@@ -1,0 +1,34 @@
+/* Layout.module.scss */
+@use "shared/ui/_constants.scss" as *;
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100svh;
+  padding: 0 20px;
+
+  width: 100%;
+  max-width: $desktop;        /* 1120px */
+  margin-inline: auto;
+  gap: 20px;
+
+  /* брейки без перекрытий */
+  @media (max-width: $mobile) {
+    max-width: $mobile;       /* 480px */
+  }
+
+  @media (min-width: $tablet) and (max-width: calc($desktop - 1px)) {
+    max-width: $tablet;       /* 726px */
+  }
+
+  @media (min-width: $desktop) {
+    max-width: $desktop;      /* 1120px */
+  }
+}
+
+.header { min-height: 50px; }
+.content { margin-top: 40px; flex: 1 1 auto; }
+.footer { min-height: 50px; }

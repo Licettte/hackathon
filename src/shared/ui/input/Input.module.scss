@@ -1,0 +1,63 @@
+.sm   { --w: 220px; --h: 44px; }
+.md   { --w: 390px; --h: 67px; }
+.lg   { --w: 340px; --h: 44px; }
+.full { --w: 100%;  --h: 44px; }
+
+.field{
+  width: var(--w);
+  height: var(--h);
+  display: block;
+  position: relative;
+  border-radius: 30px;
+  background: var(--well);
+  box-shadow:
+          18px 18px 36px var(--shadow),
+          -6px -6px 16px var(--light);
+
+  &::before{
+    content:"";
+    position:absolute;
+    inset: 6px;
+    border-radius: 30px;
+    background: linear-gradient(180deg, var(--cavity1), var(--cavity2));
+    box-shadow:
+            inset 8px 8px 14px rgba(0,0,0,.55),
+            inset -6px -6px 12px rgba(255,255,255,.04);
+    pointer-events: none;
+  }
+
+  &:has(input:focus)::before{
+    background: #0e3649;
+    box-shadow:
+            inset 8px 8px 16px rgba(0,0,0,.6),
+            inset -6px -6px 12px rgba(255,255,255,.05),
+  }
+}
+
+.input {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--primary-text-color);
+  font-size: var(--font-regular-9-size);
+  padding: 0 30px;
+  letter-spacing: .01em;
+
+  &::placeholder {
+    color: var(--placeholder);
+    opacity: .4;
+    text-indent: 0;
+    transition: text-indent .7s ease, opacity .7s ease;
+  }
+
+  &:focus::placeholder {
+    text-indent: -250px;
+    opacity: .4;
+  }
+}
+
+

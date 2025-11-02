@@ -1,0 +1,57 @@
+.sm   { --w: 250px; --h: 52px; }
+.md   { --w: 390px; --h: 52px; }
+.lg   { --w: 600px; --h: 52px; }
+.full { --w: 100%;  --h: 52px; }
+
+.green {
+  --background: linear-gradient(180deg, #064949, #032121);
+  --color: var(--secondary-text-color);
+  --colorHover: var(--primary-text-color);
+  --boxShadow: 3px 5px 7px #001117,
+  -2px -5px 7px #000d12;
+}
+.blue {
+   --background: linear-gradient(180deg, var(--primary-color),  #08212BFF);
+  --color: var(--secondary-text-color);
+  --colorHover: var(--primary-text-color);
+  --boxShadow: 3px 5px 7px #001117,
+  -2px -5px 7px #000d12;
+}
+
+.black {
+   --background:  #1d2125;
+  --color: #91959c;
+  --colorHover: var(--primary-text-color);
+  --boxShadow: 3px 5px 7px #323333, -2px -5px 7px #000000;
+}
+
+.btn {
+  width: var(--w);
+  height: var(--h);
+  background: var(--background);
+  box-shadow: var( --boxShadow);
+
+  border: 0;
+  border-radius: 30px;
+  cursor: pointer;
+
+  transition: transform .12s ease, box-shadow .18s ease;
+
+  &:active {
+    transform: translateY(0);
+    box-shadow:
+            inset 8px 8px 14px #00000055,
+            inset -8px -8px 14px #ffffff08;
+  }
+}
+
+.btnText {
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-shadow: 0 1px 0 #0004;
+  color: var(--color);
+}
+
+.btn:hover .btnText {
+  color: var(--colorHover);
+}
