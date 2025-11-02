@@ -4,28 +4,21 @@ import  qwe from './text5.jpg'
 import  qwe1 from './ship.jpg'
 import React from "react";
 import {Button} from "shared/ui/buttons/button/Button";
+import {LoginCard} from "@/pages/loginCard/LoginCard";
 type Props = {
-  textureUrl: string;
-  alpha?: number;
-  chip?: boolean;
-  neumorph?: boolean;     // ← новый режим
-  iridescent?: boolean;   // ← новый режим
+  number?: number;
+  name?: string;
 };
 
-export function SberMatteCard({
-  textureUrl, alpha = 0.08, chip = false, neumorph = false, iridescent = true
-}: Props) {
+export function SberMatteCard({ number, name}: Props) {
   return (
-    <div >
+    <div ><LoginCard/>
       <article
         className={[
           s.card,
-          neumorph ? s.neumorph : "",
-          iridescent ? s.iridescent : ""
         ].join(" ")}
         style={{
           ["--texture" as any]: `url(${qwe})`,
-
           ["--texture2" as any]: `url(${qwe1})`,
         }}
         aria-label="Matte plastic bank card"

@@ -29,6 +29,15 @@
   }
 }
 
-.header { min-height: 50px; }
-.content { margin-top: 40px; flex: 1 1 auto; }
-.footer { min-height: 50px; }
+.header {
+  min-height: 50px;
+}
+
+.content {
+  margin-top: 40px;
+  flex: 1 1 auto;
+}
+
+.footer {
+  min-height: 50px;
+}

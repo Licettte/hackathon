@@ -43,9 +43,9 @@ export  const  LoginCard=() =>{
         </div>
 
         <div className={s.submitButtons}>
-          <Button label='Войти'/>
+          <Button label='Войти' color='blue'/>
 
-          <Button label='Войти по номеру телефона'  background="green"  />
+          <Button label='Войти по номеру телефона'  color="green"  />
         </div>
 
         <a className={s.linkAlt} href="#">Зарегистрироваться</a>
