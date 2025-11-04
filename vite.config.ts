@@ -129,7 +129,6 @@ export default defineConfig(async () => {
 
     resolve: {
       alias: {
-        _helpers: path.resolve(__dirname, 'src/_helpers/'),
         entities: path.resolve(__dirname, 'src/entities'),
         widgets: path.resolve(__dirname, 'src/widgets'),
         features: path.resolve(__dirname, 'src/features'),

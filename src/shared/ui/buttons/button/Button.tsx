@@ -1,7 +1,7 @@
 import {FC} from "react";
 import clsx from "clsx";
 import styles from './Button.module.scss'
-import s from "../../../../pages/loginCard/LoginCard.module.scss";
+import s from "../../../../pages/LoginPage/LoginPage.module.scss";
 import {ButtonSize} from "../../../types/types";
 
 type ButtonProps = {

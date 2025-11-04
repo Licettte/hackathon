@@ -1,24 +1,36 @@
-import {FC} from "react";
-import {SegmentedControl} from "shared/ui/segmentedControl/SegmentedControl"; //todo поправить импорты
+import {FC, useState} from "react";
+import {SegmentedControl} from "shared/ui/segmentedControl/SegmentedControl";
+import {CreditCard} from "@/entities";
+import {Flex} from "shared/ui/flex/Flex";
+import {Button} from "shared/ui/buttons/button/Button";
 
 type CabinetPageProps = {}
 
-const categories = [
-    { label: 'Top Stories', value: 'top' },
-    { label: 'Sports', value: 'sports' },
-    { label: 'Entertainment', value: 'entertainment' },
+const opts: any[] = [
+  { label: "ВТБ", value: "vtb" },
+  { label: "СБЕРБАНК", value: "sber" },
+  { label: "АЛЬФАБАНК", value: "alf" },
 ];
 
 export const CabinetPage: FC<CabinetPageProps> = () => {
+  const [val, setVal] = useState("vtb");
 
-    const handleCategoryChange = (selectedCategory) => {
-        console.log('Selected category:', selectedCategory);
-    };
+  console.log(val, 'val')
+
   return (
-    <div>
-        <SegmentedControl options={categories} onSelect={handleCategoryChange} />
-    </div>
+    <Flex justify="space-between" align="center" gap={12}
+      dir={ 'column'}
+    >
+
+      <SegmentedControl
+        options={opts}
+        value={val}
+        onChange={(v) => setVal(v)}
+      />
+      <CreditCard number={9999} bankTitle={val} bankLogo={''}/>
+
+      <Button color="black" label={'История операций'} size='sm'/>
+    </Flex>
   );
 };
-
 

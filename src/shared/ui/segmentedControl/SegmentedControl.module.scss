@@ -1,16 +1,87 @@
 
 //TODO card вынести в общий стиль
 .card {
-  width: min(444px, 92vw);
-  border-radius: 28px;
-  background: var( --background-color);
-  box-shadow:
-          5px 5px 20px #001117,
-          -5px -5px 20px #000d12;
-;
-  padding: 28px 24px 22px;
-  position: relative;
 
+
+  border-radius: 28px;
+  background: var(--background-color);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.68), -5px -5px 20px #000d12;
+  position: relative;
   overflow: hidden;
-  margin: 50px;
+  margin: 38px;
+
+  width: 21vw;
+  height: 5vh;
+  min-height: 35px;
+  min-width: 350px;
+}
+
+.wrap { width: 100%; }
+
+.track{
+  --pad: 4px;
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  width: 21vw;
+  height: 5vh;
+  min-height: 35px;
+  min-width: 350px;
+  border-radius: 25px;//todo вынести все бордер радиусы
+  padding: var(--pad);
+
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.btn, .active{
+  border: 0;
+  background: transparent;
+  color: #e8edf6;
+  height: 100%;
+  border-radius: 25px;
+  cursor: pointer;
+  font: 600 16px/1 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+}
+
+
+/* индикатор поверх, не участвует в раскладке */
+.indicator{
+  position: absolute;
+  top: var(--pad);
+  bottom: var(--pad);
+  left: var(--pad); /* позиция меняется классами ниже */
+  border-radius:  25px;
+  background: linear-gradient(180deg, rgb(98, 105, 108), rgba(255,255,255,.08));
+  box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.35),
+          inset 0 -1px 0 rgba(0,0,0,.2),
+          0 6px 18px rgba(0,0,0,.28);
+  transition: left .22s ease-in-out, width .22s ease-in-out;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* кнопки поверх индикатора */
+.btn, .active { position: relative; z-index: 1; }
+
+/* сетка по количеству сегментов */
+@for $n from 1 through 12 {
+  .count-#{$n} {
+    grid-template-columns: repeat(#{$n}, 1fr);
+  }
+  .count-#{$n} .indicator {
+    width: calc((100% - 2 * var(--pad)) / #{$n});
+  }
+
+  /* позиция индикатора без инлайнов */
+  @for $k from 1 through $n {
+    .count-#{$n}.pos-#{$k} .indicator {
+      left: calc(var(--pad) + (#{$k - 1}) * ((100% - 2 * var(--pad)) / #{$n}));
+    }
+  }
+}
+
+.passive{
+  color: #878181;
 }

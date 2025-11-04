@@ -1,6 +1,6 @@
 // FrostTextureCard.tsx
 import React from "react";
-import s from "./tes.module.scss";
+import s from "./entities/creditCard/ui/CreditCard.module.scss";
 // Вариант A: импортируй свою текстуру (лучше PNG/JPG с мягким градиентом)
 import texture from "./green.jpg"; // положи файл рядом
 

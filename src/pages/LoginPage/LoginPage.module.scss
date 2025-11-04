@@ -23,7 +23,6 @@
   margin: -11px -2px 0;
   justify-content: flex-start;
   color: #91a6b0;
-
 }
 
 .logoImg{
@@ -47,7 +46,8 @@
 
 .sub {
   margin: 10px;
-  opacity: .7; }
+  opacity: .7;
+}
 
 .field {
   --w: 100%; --h: 48px;
@@ -76,26 +76,28 @@
   font-size: var(--font-regular-9-size);
 }
 
-
-
 .wrapperHint{
-display: flex;
+  display: flex;
   align-items: center;
-padding:10px  15px;
+  padding:10px  15px;
 }
 
 .hint{
   padding: 0px 10px;
-font-weight: normal;
-  opacity: .7;
+  font-weight: normal;
+  opacity: .5;
   min-width: 135px;
-  font-size:  var(--font-regular-7-size);
+  font-size:  var(--font-regular-9-size);
+  cursor: pointer;
+
+  &:hover {
+    opacity: .9;
+  }
+
 }
 
 .submitButtons{
-display: flex;
-
+  display: flex;
   gap: 20px;
   flex-direction: column;
-
 }

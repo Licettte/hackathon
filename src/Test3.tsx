@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./tes.module.scss";
+import s from "./entities/creditCard/ui/CreditCard.module.scss";
 // import texture from "./144.jpg"; // op ///0/5
 import texture from "./ship.jpg"; // op ///0/5
 import texture1 from "./e0612b945fb7ec0e72b00a8dd587edc7.jpg"; // op ///0/5
