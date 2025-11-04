@@ -1,0 +1,109 @@
+/* контейнер карусели в том же нео-стиле */
+.wrap {
+  background: #14181b;
+  border-radius: 28px;
+  padding: 16px;
+  color: #e7edf5;
+  width: min(520px, 92vw);
+  box-shadow: 5px 5px 20px #001117, -5px -5px 20px #000d12;
+  outline: none; /* для фокуса используем shadow ниже */
+}
+
+.wrap:focus-visible {
+  box-shadow:
+          0 0 0 2px rgba(28,106,215,.8),
+          5px 5px 20px #001117, -5px -5px 20px #000d12;
+}
+
+.viewport {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.track {
+  display: flex;
+  transition: transform .5s cubic-bezier(.22,.8,.28,1);
+  will-change: transform;
+}
+
+.card {
+  flex: 0 0 100%;
+  padding: 18px;
+  background: linear-gradient(180deg, #101417, #0d1013);
+  box-shadow:
+          inset 5px 5px 10px rgba(0,0,0,.55),
+          inset -5px -5px 10px rgba(255,255,255,.04),
+          0 10px 24px rgba(0,0,0,.25);
+  border-radius: 20px;
+  min-height: 140px;
+  display: grid;
+  gap: 8px;
+}
+
+.title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  text-shadow: 0 1px 0 rgba(0,0,0,.35);
+}
+
+.text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #c9d6e0;
+}
+
+/* элементы управления */
+.controls {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 32px 1fr 32px;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav {
+  width: 32px; height: 32px;
+  border-radius: 10px;
+  border: 0;
+  background: rgba(255,255,255,.06);
+  color: #e7edf5;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  transition: transform .12s ease, background .12s ease, opacity .12s ease;
+}
+.nav:hover { background: rgba(255,255,255,.12); transform: translateY(-1px); }
+.nav:active { transform: translateY(0); }
+
+.dots {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex; justify-content: center; gap: 8px;
+}
+
+.dot {
+  width: 9px; height: 9px; border-radius: 999px; border: 0;
+  background: linear-gradient(180deg, #20303a, #162129);
+  box-shadow:
+          inset 2px 2px 4px rgba(0,0,0,.5),
+          inset -2px -2px 4px rgba(255,255,255,.04);
+  cursor: pointer;
+  transition: transform .12s ease, background .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+.dot[data-active="y"] {
+  background: linear-gradient(180deg, #0f4e70, #0d2f3d);
+  box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.25),
+          0 0 10px rgba(30,150,200,.45);
+  transform: scale(1.1);
+}
+
+/* меньше движения — уважаем системную настройку */
+@media (prefers-reduced-motion: reduce) {
+  .track { transition: none; }
+  .nav { transition: none; }
+  .dot { transition: none; }
+}

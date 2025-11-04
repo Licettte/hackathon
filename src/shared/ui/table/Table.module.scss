@@ -1,0 +1,36 @@
+.wrap { width: min(640px, 100%); }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #14181b;
+  color: #e7edf5;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 5px 5px 20px #001117, -5px -5px 20px #000d12;
+}
+
+th, td {
+  padding: 12px 14px;
+  text-align: left;
+}
+
+thead th {
+  background: #101417;
+  font-weight: 700;
+  font-size: 14px;
+  color: #cfe0ee;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+tbody tr:nth-child(even) td { background: #0f1316; }
+tbody tr:hover td { background: #0f171c; }
+
+tfoot td {
+  background: #101417;
+  border-top: 1px solid rgba(255,255,255,.06);
+  font-weight: 700;
+}
+
+.totalLabel { text-transform: uppercase; letter-spacing: .4px; color: #9fb2c2; }
+.totalValue { color: #e7f2ff; }
