@@ -1,89 +1,99 @@
 import js from '@eslint/js';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import react from 'eslint-plugin-react';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-    { ignores: ['build'] },
+    { ignores: ['dist', 'build', 'coverage', '**/*.css', '**/*.scss'] },
+
     {
-        extends: [
-            js.configs.recommended,
-            ...tseslint.configs.recommended,
-            eslintPluginPrettierRecommended,
-        ],
-        files: ['**/*.{ts,tsx,js,jsx}'],
+        name: 'base',
+        files: ['**/*.{js,jsx,ts,tsx}'],
+        extends: [js.configs.recommended],
         languageOptions: {
-            ecmaVersion: 2020,
+            ecmaVersion: 2023,
+            sourceType: 'module',
+            // ⬇️ перенесено сюда:
+            parserOptions: {
+                ecmaFeatures: { jsx: true },
+            },
             globals: globals.browser,
         },
         plugins: {
+            react: reactPlugin,
             'react-hooks': reactHooks,
             'simple-import-sort': simpleImportSort,
-            react,
         },
+        settings: { react: { version: 'detect' } },
         rules: {
             ...reactHooks.configs.recommended.rules,
-            'simple-import-sort/imports': [
-                'warn',
-                {
-                    groups: [
-                        // react
-                        ['^react', '^@?\\w'],
-                        // absolute paths.
-                        [
-                            '^(app|proccess|pages|widgets|features|entities|shared)(/.*|$)',
-                        ],
-                        // relative imports
-                        [
-                            '^\\./(?=.*/)(?!/?$)',
-                            '^\\.(?!/?$)',
-                            '^\\./?$',
-                            '^\\.\\.(?!/?$)',
-                            '^\\.\\./?$',
-                        ],
-                        // not matched
-                        ['^'],
-                        // types
-                        ['^.+\\.?(types)$'],
-                        // Style imports.
-                        ['.module.scss', '.styled', '^.+\\.?(css)$'],
-                    ],
-                },
-            ],
-            semi: ['error', 'always'],
+            'simple-import-sort/imports': ['warn', {
+                groups: [
+                    ['^react', '^@?\\w'],
+                    ['^(app|proccess|pages|widgets|features|entities|shared)(/.*|$)'],
+                    ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$', '^\\.\\.(?!/?$)', '^\\.\\./?$'],
+                    ['^'],
+                    ['^.+\\.?(types)$'],
+                    ['.module.scss', '.styled', '^.+\\.?(css)$'],
+                ],
+            }],
             'max-len': ['error', { code: 120 }],
+            semi: ['error', 'always'],
             indent: 'off',
             'arrow-body-style': 'off',
             'prefer-arrow-callback': 'off',
-            'no-console': [
-                'error',
-                {
-                    allow: ['warn', 'error', 'info'],
-                },
-            ],
             curly: ['error', 'all'],
-            'no-empty-function': 'off',
-            'react/jsx-indent': ['error', 4],
+            'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
+            'react/react-in-jsx-scope': 'off',
             'react/prop-types': 'off',
-            'react/jsx-indent-props': ['error', 4],
             'react/display-name': 'off',
             'react/self-closing-comp': 'off',
-            'react/jsx-curly-brace-presence': [
-                'error',
-                { props: 'never', children: 'never' },
-            ],
-            'react/react-in-jsx-scope': 'off',
+            'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
+            'react/jsx-indent': ['error', 4],
+            'react/jsx-indent-props': ['error', 4],
+            'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.tsx'] }],
             'react-hooks/exhaustive-deps': 'off',
-            'react/jsx-filename-extension': [
-                1,
-                { extensions: ['.js', '.jsx', '.tsx'] },
-            ],
-            '@typescript-eslint/no-unused-expressions': 'off',
+        },
+    },
+
+    {
+        name: 'ts (unstyled)',
+        files: ['**/*.{ts,tsx}'],
+        extends: [...tseslint.configs.recommended],
+        rules: {
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/no-unused-vars': 'off',
+            '@typescript-eslint/no-unused-expressions': 'off',
+            'no-empty-function': 'off',
         },
-    }
+    },
+
+    {
+        name: 'ts type-checked',
+        files: ['**/*.{ts,tsx}'],
+        extends: [...tseslint.configs.recommendedTypeChecked],
+        languageOptions: {
+            parserOptions: {
+                projectService: true,
+            },
+        },
+        rules: {
+            '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
+            '@typescript-eslint/explicit-function-return-type': 'off',
+            '@typescript-eslint/consistent-type-definitions': 'off',
+            '@typescript-eslint/array-type': 'off',
+            '@typescript-eslint/strict-boolean-expressions': 'off',
+            '@typescript-eslint/prefer-nullish-coalescing': 'off',
+            '@typescript-eslint/no-floating-promises': 'off',
+        },
+    },
+
+    {
+        name: 'prettier',
+        files: ['**/*.{js,jsx,ts,tsx}'],
+        extends: [eslintConfigPrettier],
+    },
 );

@@ -1,4 +1,5 @@
 import { FC, ReactNode, useEffect, useMemo, useRef, useState } from "react";
+
 import s from "./Carousel.module.scss";
 
 type Slide = {
@@ -43,7 +44,7 @@ const DEFAULT_SLIDES: Slide[] = [
 
 export const ExplanationCarousel: FC<Props> = ({
   slides = DEFAULT_SLIDES,
-  autoPlay = true,
+     autoPlay = true,
   autoInterval = 3800,
   className,
 }) => {
@@ -70,7 +71,7 @@ export const ExplanationCarousel: FC<Props> = ({
   // свайп на таче
   useEffect(() => {
     const el = wrapRef.current;
-    if (!el) return;
+       if (!el) return;
     let startX = 0;
     const onStart = (e: TouchEvent) => (startX = e.touches[0].clientX);
     const onMove = (e: TouchEvent) => {
@@ -80,17 +81,17 @@ export const ExplanationCarousel: FC<Props> = ({
         startX = e.touches[0].clientX + (dx < 0 ? 9999 : -9999); // гасим повтор
       }
     };
-    el.addEventListener("touchstart", onStart, { passive: true });
+      el.addEventListener("touchstart", onStart, { passive: true });
     el.addEventListener("touchmove", onMove, { passive: true });
     return () => {
-      el.removeEventListener("touchstart", onStart);
+         el.removeEventListener("touchstart", onStart);
       el.removeEventListener("touchmove", onMove);
     };
   }, [count]);
 
-  const onKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowRight") next();
-    if (e.key === "ArrowLeft") prev();
+    const onKeyDown = (e: React.KeyboardEvent) => {
+       if (e.key === "ArrowRight") next();
+       if (e.key === "ArrowLeft") prev();
   };
 
   return (

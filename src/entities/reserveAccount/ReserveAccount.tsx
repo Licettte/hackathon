@@ -1,4 +1,5 @@
 import { FC, useMemo, useState } from "react";
+
 import styles from "./ReserveAccount.module.scss"; // можно подставить свои стили
 
 type LedgerType = "FUND" | "WITHDRAW" | "PAY" | "INTEREST";
@@ -208,9 +209,9 @@ export const ReserveAccountMock: FC<Props> = ({ userId = 1, planTotalRub = 13450
                     <td>{fmtDate(row.ts)}</td>
                     <td>{mapType(row.type, row.comment)}</td>
                     <td className={styles.right}>{fmtSigned(row.amount)}</td>
-                    <td className={styles.right}>{fmtRUB(row.balanceAfter)}</td>
+                               <td className={styles.right}>{fmtRUB(row.balanceAfter)}</td>
                   </tr>
-                ))}
+                     ))}
               </tbody>
             </table>
           ) : (

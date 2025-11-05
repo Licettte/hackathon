@@ -1,11 +1,6 @@
-import {FC} from 'react';
-import {Login} from "@/entities/login";
+import {Login} from "/entities/login";
 
-interface LoginPageProps {
-
-}
-
-export const LoginPage: FC<LoginPageProps> = ({}) => {
+export const LoginPage= () => {
     return (
         <>
           <Login/>

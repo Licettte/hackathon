@@ -5,8 +5,6 @@ import {DescriptionConfirmModal} from "../modal/DescriptionConfirmModal";
 import clsx from "clsx";
 import {Flex, Toggle} from "shared/ui";
 
-
-
 type AgreementProps = {
     isOfferLink?: boolean
 }
@@ -18,10 +16,10 @@ export const Agreement: FC<AgreementProps> = ({isOfferLink = false}) => {
     return (
         <Flex gap={20}>
             <Toggle size='sm' />
-            <span className={styles.hint}>Я согласен с условием
+                      <span className={styles.hint}>Я согласен с условием
                 <span className={clsx(
-                    styles.offer,
-                    [isOfferLink]: styles.OfferLink)
+                       styles.offer,
+                    { [styles.offerLink]: isOfferLink })
                 } onClick={()=>setOpenConfirmModal(isOfferLink && true)}>
                      оферты
                 </span>

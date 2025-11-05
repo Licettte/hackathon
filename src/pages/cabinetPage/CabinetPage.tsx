@@ -1,12 +1,14 @@
 import {FC, useState} from "react";
-import {SegmentedControl} from "shared/ui/segmentedControl/SegmentedControl";
-import {CreditCard} from "@/entities";
-import {Flex} from "shared/ui/flex/Flex";
+
 import {Button} from "shared/ui/buttons/button/Button";
-import {ExplanationCarousel} from "shared/ui/сarousel/Carousel";
-import {ObligationsTable} from "shared/ui/table/Table";
+import {Flex} from "shared/ui/flex/Flex";
 import {ProgressIndicator, useProgressController} from "shared/ui/ProgressIndicator/ProgressIndicator";
-import {ReserveAccountMock} from "@/entities/reserveAccount/ReserveAccount";
+import {SegmentedControl} from "shared/ui/segmentedControl/SegmentedControl";
+import {ObligationsTable} from "shared/ui/table/Table";
+import {ExplanationCarousel} from "shared/ui/сarousel/Carousel";
+
+import {CreditCard} from "/entities";
+import {ReserveAccountMock} from "/entities/reserveAccount/ReserveAccount";
 
 type CabinetPageProps = {}
 
@@ -31,7 +33,7 @@ export const CabinetPage: FC<CabinetPageProps> = () => {
     state: ctrl.value >= (i + 1) * (100 / items.length) - 10 ? "done" : "pending",
   }));
   return (<Flex justify="space-between" align="center" gap={12}
-      dir={ 'column'}
+      dir="column"
     >
 
       <SegmentedControl
@@ -39,7 +41,7 @@ export const CabinetPage: FC<CabinetPageProps> = () => {
         value={val}
         onChange={(v) => setVal(v)}
       />
-      <CreditCard number={9999} bankTitle={val} bankLogo={''}/>
+      <CreditCard number={9999} bankTitle={val} bankLogo=""/>
 
 
       <ReserveAccountMock userId={1} planTotalRub={13450} />
@@ -64,7 +66,7 @@ export const CabinetPage: FC<CabinetPageProps> = () => {
 
 
 
-      <Button color="black" label={'История операций'} size='sm'/>
+      <Button color="black" label="История операций" size='sm'/>
     </Flex>
   );
 };

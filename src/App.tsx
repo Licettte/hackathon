@@ -1,10 +1,8 @@
-import {LoginPage} from "./pages/LoginPage/LoginPage";
-import {Layout} from "./pages/Layout";
-import {CabinetPage} from "./pages/cabinetPage/CabinetPage";
 import {Route, Routes} from "react-router-dom";
-import {FrostGlassMotion} from "@/Test";
-import {FrostTextureCard} from "@/Test2";
-import {GlassBankCard} from "@/Test3";
+
+import {CabinetPage} from "./pages/cabinetPage/CabinetPage";
+import {Layout} from "./pages/Layout";
+import {LoginPage} from "./pages/LoginPage/LoginPage";
 
 export default function App() {
   return (

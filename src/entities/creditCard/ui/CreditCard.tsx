@@ -1,10 +1,10 @@
+import React, {FC} from "react";
+
+import  qwe1 from '../../../ship.jpg'
+import  qwe from '../../../text5.jpg'
+
 import s from "./CreditCard.module.scss";
 
-import  qwe from '../../../text5.jpg'
-import  qwe1 from '../../../ship.jpg'
-import React, {FC} from "react";
-import {Button} from "shared/ui/buttons/button/Button";
-import {LoginPage} from "@/pages/LoginPage/LoginPage";
 
 type CreditCardProps = {
   number: number;
