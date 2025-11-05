@@ -105,7 +105,7 @@ export const ReserveAccountMock: FC<Props> = ({ userId = 1, planTotalRub = 13450
   };
 
   const onFund = () => {
-    const cents = Math.round(fundValueRub * 100);
+       const cents = Math.round(fundValueRub * 100);
     if (cents <= 0) return;
     pushLedger("FUND", cents, "Перевод из зарплаты");
     // подсказка: после пополнения можно сбросить поле или оставить

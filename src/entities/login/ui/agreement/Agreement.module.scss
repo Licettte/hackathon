@@ -1,0 +1,21 @@
+
+
+.hint{
+  opacity: .7;
+  min-width: 135px;
+  font-size:  var(--font-regular-9-size);
+}
+
+.offer{
+  margin: 5px;
+}
+
+.offerLink{
+  margin: 5px;
+  color: var(--link-text-color);
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+}

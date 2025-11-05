@@ -6,15 +6,16 @@ import clsx from "clsx";
 type ToggleProps = {
     defaultIsToggle?: boolean
     size?: ButtonSize;
+
 }
 
 export const Toggle:FC<ToggleProps> = ({ defaultIsToggle = false, size='md'}) => {
   const [isToggle, setIsToggle] = useState(defaultIsToggle)
-  console.log(isToggle, 'isToggle')
+
+
   return (
 
     <label  className={clsx(styles.label, styles[size])}>
-
       <div className={clsx(styles.background, styles[size])}>
         <div className={styles.toggle}>
 

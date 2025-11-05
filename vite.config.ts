@@ -1,18 +1,15 @@
-import react from '@vitejs/plugin-react-swc';
-import path from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { VitePWA } from 'vite-plugin-pwa';
+import react from "@vitejs/plugin-react-swc";
 
 export default defineConfig(async () => {
   return {
     plugins: [
       react({
-        // примеры полезных SWC-настроек (опционально)
         tsDecorators: true,
-        plugins: [['@swc/plugin-styled-components', { displayName: true }]],
       }),
       tsconfigPaths(),
       svgr({ svgrOptions: { ref: true } }),
@@ -126,14 +123,14 @@ export default defineConfig(async () => {
         },
       },
     },
-
     resolve: {
       alias: {
-        entities: path.resolve(__dirname, 'src/entities'),
-        widgets: path.resolve(__dirname, 'src/widgets'),
-        features: path.resolve(__dirname, 'src/features'),
-        shared: path.resolve(__dirname, 'src/shared'),
-        pages: path.resolve(__dirname, 'src/pages'),
+        app: '/src/app',
+        entities: '/src/entities',
+        features: '/src/features',
+        pages: '/src/pages',
+        shared: '/src/shared',
+        widgets: '/src/widgets',
       },
     },
 

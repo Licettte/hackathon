@@ -1,0 +1,30 @@
+.wrapperHint{
+  display: flex;
+  align-items: center;
+  //padding:10px  15px;
+}
+
+.hint{
+  //padding: 0px 10px;
+  font-weight: normal;
+  opacity: .5;
+  min-width: 135px;
+  font-size:  var(--font-regular-9-size);
+  cursor: pointer;
+
+  &:hover {
+    opacity: .9;
+  }
+
+}
+
+.detailed{
+  color: var(--link-text-color);
+  cursor: pointer;
+  font-size:  var(--font-regular-9-size);
+}
+
+.condition{
+  padding-top: 15px;
+  font-size:  var(--font-regular-9-size);
+}
