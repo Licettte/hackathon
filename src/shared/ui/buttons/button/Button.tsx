@@ -1,34 +1,45 @@
-import {FC} from "react";
-import clsx from "clsx";
-import styles from './Button.module.scss'
-import s from "../../../../pages/LoginPage/LoginPage.module.scss";
-import {ButtonSize} from "../../../types/types";
+import { ButtonHTMLAttributes, FC, MouseEventHandler } from 'react';
+import clsx from 'clsx';
 
-type ButtonProps = {
-  variant?: 'primary' | 'text' | 'ghostWhite'
-  size?: ButtonSize;
-  color?:'green'| 'blue' | 'black';
-  label?: string;
-  onClick?: () => void;
-  disabled?: boolean;
-  className?: string;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>
+import { ButtonSize } from 'shared/types/types';
+
+import styles from './Button.module.scss';
+
+type OwnProps = Partial<{
+    size: ButtonSize;
+    color: 'green' | 'blue' | 'black';
+    label: string;
+    onClick: MouseEventHandler<HTMLButtonElement>;
+    className: string;
+}>;
+
+type NativeProps = Omit<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    'size' | 'color'
+>;
+
+type ButtonProps = OwnProps & NativeProps;
 
 export const Button: FC<ButtonProps> = ({
-  color = 'black',
-  size = 'md',
-  label ,
-  onClick,
-  disabled,
-  className,
+    size = 'md',
+    color = 'black',
+    label,
+    onClick,
+    className,
+    disabled,
+    type = 'button',
+    ...rest
 }) => {
-  return      <button
-    className={clsx(styles.btn, className, styles[size],styles[color] )}
-    onClick={onClick}
-    disabled={disabled}
-    aria-label={label}
-  >
-    <span className={clsx(styles.btnText, styles[color])}>{label}</span>
-  </button>
-}
-
+    return (
+        <button
+            className={clsx(styles.btn, className, styles[size], styles[color])}
+            onClick={onClick}
+            disabled={disabled}
+            aria-label={label}
+            type={type}
+            {...rest}
+        >
+            <span className={clsx(styles.btnText, styles[color])}>{label}</span>
+        </button>
+    );
+};

@@ -2,13 +2,12 @@
     --bg-1: #ECEFF2;
     --bg-2: #E7EBEE;
         --surface: #FFFFFFCC;
-        --text: #0F172A;
+        --text: #279fd9;
         --accent: rgba(32, 104, 165, 0.72);
         --accent-hover: #3A8DAA;
     --primary-color: #0e3649;
     --bright-color: #e5e3d8;
-    /*--background-color: #000000;   !* было #101113 *!*/
-    /*--background-color: #0f212b;   !* было #101113 *!/*/
+
     --background-color: #262626;   /* было #101113 */
     --dark-text-color: #0f2632;   /* было #101113 */
     --primary-text-color: #e7e3d8;   /* было #101113 */
@@ -18,7 +17,6 @@
     --light-color: #fefefe;
     --light-xs-color: #b2b5b9;
     --dark-s-color: #3f4650;
-    /*--dark-m-color: #0663ef;       !* цвет иконок svg *!*/
     --dark-m-color: #8fb2ea;       /* цвет иконок svg */
     --dark-l-color: #00064a;
     --dark-xl-color: #00032e;
@@ -29,6 +27,7 @@
     --font-regular-7-size: 0.7rem;
     --font-regular-9-size: 0.9rem;
     --font-regular-10-size: 1rem;
+    --font-regular-13-size: 1.3rem;
 
 
     --font-regular-17-size: 1.7rem;
@@ -95,7 +94,7 @@ li {
     list-style: none;
 }
 
-/* Кнопки — объединение твоих правил и базового PWA-стайла */
+
 button {
     color: inherit;
     cursor: pointer;
@@ -125,10 +124,12 @@ h2 {
         margin: 0 4.4rem; /* 44px */
     }
 }
+
 h3, h4, h5 {
     font-size: 1.75rem;
     margin: 0;
 }
+
 h6 {
     font-size: var(--font-regular-17-size);
     font-weight: var(--font-regular-17-weight);

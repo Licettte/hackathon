@@ -1,10 +1,9 @@
-import {Login} from "/entities/login";
+import { Login } from 'widgets/login/ui/Login';
 
-export const LoginPage= () => {
+export const LoginPage = () => {
     return (
         <>
-          <Login/>
+            <Login />
         </>
     );
 };
-

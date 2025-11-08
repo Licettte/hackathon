@@ -1,1 +1,1 @@
-export {CreditCard} from './creditCard/ui/CreditCard'
+export * from 'widgets/creditCard/ui/CreditCard';

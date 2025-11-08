@@ -1,11 +1,13 @@
 import { FC, ReactNode, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
-import styles from "./Modal.module.scss";
+
 import {Button} from "shared/ui/buttons/button/Button";
 import {Flex} from "shared/ui/flex/Flex";
 
+import styles from "./Modal.module.scss";
+
 type ModalProps = {
-    open: boolean;
+  isOpenModal: boolean;
     onClose: () => void;
     title?: ReactNode;
     children?: ReactNode;
@@ -16,7 +18,7 @@ type ModalProps = {
 };
 
 export const Modal: FC<ModalProps> = ({
-  open,
+                                        isOpenModal,
   onClose,
   title,
   children,
@@ -30,11 +32,11 @@ export const Modal: FC<ModalProps> = ({
 
   // при открытии переводим фокус в модалку (чтобы ловить ESC локально)
   useEffect(() => {
-    if (!open) return;
+    if (!isOpenModal) return;
     (cardRef.current ?? overlayRef.current)?.focus();
-  }, [open]);
+  }, [isOpenModal]);
 
-  if (!open) return null;
+  if (!isOpenModal) return null;
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
     if (!closeOnEsc) return;

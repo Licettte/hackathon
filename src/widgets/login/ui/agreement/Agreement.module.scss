@@ -8,14 +8,11 @@
 
 .offer{
   margin: 5px;
-}
-
-.offerLink{
   margin: 5px;
   color: var(--link-text-color);
   cursor: pointer;
-
   &:hover {
     opacity: 1;
   }
 }
+

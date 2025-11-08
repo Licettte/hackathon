@@ -22,9 +22,14 @@
   color: var(--link-text-color);
   cursor: pointer;
   font-size:  var(--font-regular-9-size);
+  opacity: .7;
+  &:hover{
+    opacity: 1;
+  }
 }
 
 .condition{
   padding-top: 15px;
   font-size:  var(--font-regular-9-size);
+  color: var(--primary-text-color);
 }

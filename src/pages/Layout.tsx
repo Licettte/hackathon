@@ -1,23 +1,21 @@
-import {Outlet} from "react-router-dom";
-import styles from './Layout.module.scss'
+import { Outlet } from 'react-router-dom';
+
+import { Toaster } from 'shared/ui/toaster/Toaster';
+
+import styles from './Layout.module.scss';
 
 export const Layout = () => {
-  return (
-    <div  className={styles.wrapper}>
-      <header className={styles.header}>
+    return (
+        <div className={styles.wrapper}>
+            <header className={styles.header}>HEDER</header>
 
-        HEDER
-      </header>
+            <main className={styles.content}>
+                <Outlet />
 
-      <main className={styles.content}>
-        <Outlet/>
-      </main>
+                <Toaster />
+            </main>
 
-      <footer className={styles.footer}>
-
-        /FOOTER
-      </footer>
-
-    </div>
-  )
-}
+            <footer className={styles.footer}>/FOOTER</footer>
+        </div>
+    );
+};

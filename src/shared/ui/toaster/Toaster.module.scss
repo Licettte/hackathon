@@ -1,0 +1,11 @@
+.neoToast { z-index: 9999; }
+
+:global([data-sonner-toast]).neoToastItem {
+  background: transparent!important;
+  color: var(--link-text-color) !important;
+  font-size: var(--font-regular-10-size) !important;
+  border-radius: 16px !important;
+  min-width: 370px  !important;
+  backdrop-filter: blur(6px) saturate(1.05);
+}
+
