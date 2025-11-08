@@ -1,4 +1,3 @@
-// features/auth/model/authSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type User = { id: number; email: string; name?: string };

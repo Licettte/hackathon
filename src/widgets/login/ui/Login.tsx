@@ -22,7 +22,7 @@ const TXT = {
 
 export const Login = () => {
     const navigate = useNavigate();
-    const [, { isSuccess }] = useLoginMutation();
+    const [login, { isSuccess }] = useLoginMutation();
 
     const { register, validate } = useLoginForm();
 
@@ -37,7 +37,7 @@ export const Login = () => {
             return;
         }
         if (!validate()) return;
-        // TODO: ждем бэкенд-с
+        login({ email: 'user1@example.com', password: '123' });
     };
 
     useEffect(() => {
@@ -59,17 +59,14 @@ export const Login = () => {
 
             <main className={styles.body}>
                 <form onSubmit={onSubmit} className={styles.form}>
-                    <Input
-                        placeholder={TXT.email}
-                        type='email'
-                        {...register('email')}
-                    />
+                    <Input placeholder={TXT.email} {...register('email')} />
+                    {/*todo тут валидация для почты*/}
                     <Input
                         placeholder={TXT.password}
                         type='password'
                         {...register('password')}
                     />
-
+                    {/*todo тут валидация для пароля*/}
                     <div className={styles.buttonsWrapper}>
                         <Agreement isOfferLink onChange={setIsAgree} />
                         <div className={styles.submitButtons}>

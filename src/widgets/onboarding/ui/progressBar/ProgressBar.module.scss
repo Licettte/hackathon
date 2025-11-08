@@ -1,0 +1,54 @@
+.item {
+    position: relative;
+    width: 150px;
+    height: 25px;
+    border-radius: 25px;
+
+    /* внешний камень */
+    background: var(--well, #24282d);
+    box-shadow:
+            18px 18px 36px var(--shadow, #0e1012),
+            -6px -6px 16px var(--light, #2b3036);
+    overflow: hidden;
+
+    /* базовая впадина (REST) */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border-radius: 23px;
+        background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.35));
+        box-shadow:
+                inset 6px 6px 10px rgba(0,0,0,.55),
+                inset -4px -4px 8px rgba(255,255,255,.04);
+        transition: background .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+}
+
+/* пустая — остаётся впадиной */
+.rest {}
+
+/* пройденная — делаем ВЫПУКЛОЙ */
+.passed::before {
+    background: linear-gradient(180deg, #1c0202, #d96400);
+
+    box-shadow:
+            -2px -2px 6px rgba(255,255,255,.12),  /* подсвет сверху-слева */
+            4px  6px 10px rgba(0,0,0,.45),       /* тень снизу-справа  */
+            inset 0  1px 0  rgba(255,255,255,.20),/* тонкий верхний фасет */
+            inset 0 -1px 0  rgba(0,0,0,.25);      /* нижний фасет        */
+    border: none;
+}
+
+/* блик сверху — «стеклянность» */
+.passed::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    top: 3px;
+    bottom: 11px;       /* оставляем нижнюю тёмную часть */
+    border-radius: 18px;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,0));
+}

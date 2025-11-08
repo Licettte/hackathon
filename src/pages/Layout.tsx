@@ -7,7 +7,7 @@ import styles from './Layout.module.scss';
 export const Layout = () => {
     return (
         <div className={styles.wrapper}>
-            <header className={styles.header}>HEDER</header>
+            <header className={styles.header}></header>
 
             <main className={styles.content}>
                 <Outlet />
@@ -15,7 +15,7 @@ export const Layout = () => {
                 <Toaster />
             </main>
 
-            <footer className={styles.footer}>/FOOTER</footer>
+            <footer className={styles.footer}></footer>
         </div>
     );
 };

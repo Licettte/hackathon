@@ -1,9 +1,6 @@
-/* Layout.module.scss */
 @use "shared/ui/_constants.scss" as *;
 
-
 .wrapper {
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +12,7 @@
   margin-inline: auto;
   gap: 20px;
 
-  /* брейки без перекрытий */
+
   @media (max-width: $mobile) {
     max-width: $mobile;       /* 480px */
   }

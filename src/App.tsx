@@ -1,13 +1,15 @@
+// App.tsx
 import { Route, Routes } from 'react-router-dom';
-import { Toaster } from 'sonner';
 
 import { CabinetPage } from 'pages/cabinetPage/CabinetPage';
 import { Layout } from 'pages/Layout';
 import { LoginPage } from 'pages/LoginPage/LoginPage';
+import { OnboardingPage } from 'pages/onboardingPage/OnboardingPage';
 
 export const PageRoutes = {
     LAYOUT: '/',
-    CABINET: '/cabinet',
+    CABINET: 'cabinet',
+    ONBOARDING: 'onboarding',
 } as const;
 
 export default function App() {
@@ -16,9 +18,12 @@ export default function App() {
             <Route path={PageRoutes.LAYOUT} element={<Layout />}>
                 <Route index element={<LoginPage />} />
                 <Route path={PageRoutes.CABINET} element={<CabinetPage />} />
-                <Route path='*' element='Error' />
+                <Route
+                    path={PageRoutes.ONBOARDING}
+                    element={<OnboardingPage />}
+                />
+                <Route path='*' element={<div>Not found</div>} />
             </Route>
         </Routes>
-        // {/*todo вынести в роуты*/}
     );
 }
