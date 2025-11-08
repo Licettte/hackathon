@@ -1,14 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit'
-// import { api } from '../shared/api/api'
-import counterReducer from '../../features/counter/counterSlice'
+import { configureStore } from '@reduxjs/toolkit';
+
+import { authReducer } from 'features/auth/model/authSlice';
+import { baseApi } from 'shared/api/baseApi';
 
 export const store = configureStore({
-  reducer: {
-    // [api.reducerPath]: api.reducer,
-    counter: counterReducer,
-  },
-  // middleware: (getDefault) => getDefault().concat(api.middleware),
-})
+    reducer: { [baseApi.reducerPath]: baseApi.reducer, auth: authReducer },
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+    middleware: (gDM) => gDM().concat(baseApi.middleware),
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

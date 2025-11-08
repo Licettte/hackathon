@@ -1,5 +1,7 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { useLoginMutation } from 'features/auth/api';
 import { Button, Input } from 'shared/ui';
 import { useLoginForm } from 'widgets/login/lib/useLoginForm';
 import { Agreement } from 'widgets/login/ui/agreement/Agreement';
@@ -19,7 +21,11 @@ const TXT = {
 };
 
 export const Login = () => {
+    const navigate = useNavigate();
+    const [, { isSuccess }] = useLoginMutation();
+
     const { register, validate } = useLoginForm();
+
     const [isAgree, setIsAgree] = useState(false);
     const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -31,8 +37,12 @@ export const Login = () => {
             return;
         }
         if (!validate()) return;
-        // TODO: submit + redirect
+        // TODO: ждем бэкенд-с
     };
+
+    useEffect(() => {
+        if (isSuccess) navigate('/cabinet', { replace: true });
+    }, [isSuccess]);
 
     return (
         <div className={styles.card}>
