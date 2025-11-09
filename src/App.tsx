@@ -12,6 +12,7 @@ export const PageRoutes = {
     ONBOARDING: 'onboarding',
 } as const;
 
+//todo lazy импорт. ток для автор.пользователей открыты пути, все кроме LoginPage
 export default function App() {
     return (
         <Routes>

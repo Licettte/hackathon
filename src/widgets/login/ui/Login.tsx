@@ -37,11 +37,11 @@ export const Login = () => {
             return;
         }
         if (!validate()) return;
-        login({ email: 'user1@example.com', password: '123' });
+        login({ email: 'user1@example.com', password: '123' }); //todo добавить данные с инпута
     };
 
     useEffect(() => {
-        if (isSuccess) navigate('/cabinet', { replace: true });
+        if (isSuccess) navigate('/onboarding', { replace: true });
     }, [isSuccess]);
 
     return (

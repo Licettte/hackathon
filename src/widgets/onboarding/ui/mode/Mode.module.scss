@@ -1,0 +1,63 @@
+
+
+.title {
+  margin: 0 0 16px;
+  text-align: center;
+  font-weight: 800;
+  font-size: clamp(18px, 2.2vw, 24px);
+  color: var(--primary-text-color, #e8edf6);
+  letter-spacing: .2px;
+}
+
+.rows {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+
+  @media (min-width: 720px) {
+    gap: 18px;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+
+  /* неоморфный контейнер-«строка» */
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--well, #24282d);
+  box-shadow:
+          18px 18px 36px var(--shadow, #0e1012),
+          -6px -6px 16px var(--light, #2b3036),
+          inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+.text {
+  margin: 0;
+  color: color-mix(in srgb, var(--primary-text-color, #e8edf6), #000 18%);
+  line-height: 1.45;
+
+  font-size: var(--font-regular-13-size);
+  b { color: var(--primary-text-color, #e8edf6); }
+}
+
+.cta {
+  width: clamp(180px, 30vw, 240px);
+  justify-self: end;
+}
+
+.active {
+  outline-offset: 2px;
+  filter: brightness(1.06) saturate(1.03);
+}
+
+.note {
+  margin: 14px 8px 0;
+  text-align: center;
+  font-size: 14px;
+  color: color-mix(in srgb, var(--primary-text-color, #e8edf6), #000 35%);
+  font-size: var(--font-regular-10-size);
+}

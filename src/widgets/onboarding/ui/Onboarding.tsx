@@ -1,10 +1,11 @@
-// Onboarding.tsx
 import { useState } from 'react';
 
 import { Button, Flex } from 'shared/ui';
 import { SLIDES } from 'widgets/onboarding/model/constants';
 import { OnboardingCard } from 'widgets/onboarding/ui/onboardingCard/OnboardingCard';
 import { ProgressBar } from 'widgets/onboarding/ui/progressBar/ProgressBar';
+
+import styles from './Onboarding.module.scss';
 
 export const Onboarding = () => {
     const [numberSlide, setNumberSlide] = useState(0);
@@ -15,11 +16,27 @@ export const Onboarding = () => {
     const prevSlide = () => setNumberSlide((s) => Math.max(s - 1, 0));
 
     return (
-        <Flex dir='column' gap={16} align='center'>
+        <Flex dir='column' gap={16} align='center' className={styles.wrapper}>
             <ProgressBar numberSlide={numberSlide} slide={SLIDES} />
-            <OnboardingCard numberSlide={numberSlide} />
-            <Button label='назад' onClick={prevSlide} />
-            <Button label='вперёд' onClick={nextSlide} />
+
+            <div className={styles.controls}>
+                <Button
+                    label='‹'
+                    onClick={prevSlide}
+                    className={styles.navBtn}
+                    color='black'
+                />
+                <div className={styles.wrapperOnboardingCard}>
+                    <OnboardingCard numberSlide={numberSlide} />
+                </div>
+
+                <Button
+                    label='›'
+                    onClick={nextSlide}
+                    className={styles.navBtn}
+                    color='black'
+                />
+            </div>
         </Flex>
     );
 };

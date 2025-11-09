@@ -1,0 +1,43 @@
+.wrap { width: 100%; color: var(--primary-text-color,#e8edf6); }
+.head {
+  display: grid; grid-template-columns: 1.4fr 1.2fr .6fr .8fr ;
+  padding: 6px 12px; margin-bottom: 6px; opacity:.65; font-size:12px;
+}
+.body { display: grid; gap: 15px; }
+.tr {
+  display: grid; grid-template-columns: 1.4fr 1fr .6fr .8fr ; align-items: center;
+  padding: 12px; border-radius: 14px; background: var(--well,#24282d);
+  box-shadow: 18px 18px 36px var(--shadow,#0e1012), -6px -6px 16px var(--light,#2b3036), inset 0 1px 0 rgba(255,255,255,.03);
+  transition: transform .06s ease, box-shadow .2s ease;
+  &:hover { transform: translateY(-1px); box-shadow: 22px 22px 44px var(--shadow,#0e1012), -6px -6px 18px var(--light,#2b3036); }
+}
+.td { display:flex; align-items:center; gap:10px; }
+.cellLeft { display:flex; align-items:center; gap:10px; }
+.th { }
+
+.num { font-variant-numeric: tabular-nums; }
+.day { display:inline-flex; min-width:36px; justify-content:center; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,.06); font-weight:700; }
+
+.catBadge { display:inline-flex; align-items:center; padding:6px 10px; border-radius:999px; font-weight:700; font-size:13px; color:#e8edf6; border:1px solid rgba(255,255,255,.08); }
+.badgeBlue   { background: linear-gradient(180deg,#0b3a55,#072c42); }
+.badgePurple { background: linear-gradient(180deg,#6d4eff,#4b2ce0); }
+.badgeCyan   { background: linear-gradient(180deg,#16a3c8,#0b6a86); }
+.badgeGreen  { background: linear-gradient(180deg,#1d8a62,#0f5c43); }
+.badgeOrange { background: linear-gradient(180deg,#e08a2a,#a65300); }
+.badgePink   { background: linear-gradient(180deg,#b6429b,#7a246b); }
+.badgeTeal   { background: linear-gradient(180deg,#2b9f8b,#136f63); }
+
+.modeBadge { padding:4px 10px; border-radius:999px; font-weight:700; font-size:12px; border:1px solid rgba(255,255,255,.08); }
+.modeAuto    { background: rgba(18,179,214,.15); color:#9ee7ff; }
+.modeSuggest { background: rgba(161,128,255,.18); color:#d3c7ff; }
+
+.statusBadge { padding:4px 10px; border-radius:999px; font-weight:700; font-size:12px; }
+.stOk   { background: rgba(43,180,107,.18); color:#b6f3d1; }
+.stInfo { background: rgba(18,179,214,.18); color:#aeefff; }
+.stWarn { background: rgba(255,92,92,.18); color:#ffd0d0; }
+
+.delta { font-variant-numeric: tabular-nums; font-weight:700; }
+.plus  { color:#90e6a8; } .minus { color:#ffb3b3; } .zero { color:#c8d4e1; }
+
+.skel { padding:24px 12px; opacity:.7; }
+.err  { padding:24px 12px; opacity:.9; }

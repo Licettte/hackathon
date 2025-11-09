@@ -1,0 +1,43 @@
+.wrapper {
+  margin: 150px auto 0;
+  width: 1200px;;
+  padding-inline: 16px;
+  box-sizing: border-box;
+}
+
+/* 3 колонки: кнопка — центр — кнопка */
+.controls {
+  display: grid;
+  grid-template-columns: 80px minmax(280px, 1fr) 80px;
+  align-items: center;
+  gap: 16px;
+  width: 1200px;
+  min-height: 500px;
+}
+
+/* карточка по центру всегда на всю среднюю колонку */
+.controls > :nth-child(2) {
+  justify-self: center;
+  width: 800px;
+  height: 450px;
+}
+
+/* кнопки прижаты к краям колонок */
+.controls > :first-child  { justify-self: start; }
+.controls > :last-child   { justify-self: end;   }
+
+.navBtn {
+  width: 80px;
+  font-size: var(--font-bold-16-size);
+}
+
+@media (max-width: 480px) {
+  .controls {
+    grid-template-columns: 1fr;
+  }
+  .controls > :first-child,
+  .controls > :last-child {
+    justify-self: stretch;
+  }
+}
+
