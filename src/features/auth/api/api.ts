@@ -1,23 +1,28 @@
-// features/auth/api/authApi.ts
+// features/auth/api.ts
 import { baseApi } from 'shared/api/baseApi';
 
-import { setCredentials, setUser } from '../model/authSlice';
-
 export type LoginRequest = { email: string; password: string };
-export type LoginResponse = { token: string };
+export type LoginResponse = { ok: true; token: string };
+
+export type StartOnboardingResponse = { ok: true };
 
 export const authApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         login: builder.mutation<LoginResponse, LoginRequest>({
-            query: (body) => ({ url: '/auth/login', method: 'POST', body }),
-            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-                try {
-                    const { data } = await queryFulfilled;
-                    dispatch(setCredentials({ token: data.token }));
-                } catch {}
-            },
+            query: (body) => ({
+                url: '/auth/login',
+                method: 'POST',
+                body,
+            }),
+        }),
+        startOnboarding: builder.mutation<StartOnboardingResponse, void>({
+            query: () => ({
+                url: '/onboarding/start',
+                method: 'POST',
+                body: {}, // пустое тело по ТЗ
+            }),
         }),
     }),
 });
 
-export const { useLoginMutation } = authApi;
+export const { useLoginMutation, useStartOnboardingMutation } = authApi;

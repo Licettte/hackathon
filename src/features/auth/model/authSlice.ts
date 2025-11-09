@@ -1,35 +1,32 @@
+// features/auth/model/authSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type User = { id: number; email: string; name?: string };
-type AuthState = { token: string | null; user: User | null };
-
+type AuthState = { token: string | null };
 const initialState: AuthState = {
-    token: localStorage.getItem('token'),
-    user: null,
+    token:
+        typeof localStorage !== 'undefined'
+            ? localStorage.getItem('token')
+            : null,
 };
 
-const authSlice = createSlice({
+const slice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        setCredentials(
-            state,
-            action: PayloadAction<{ token: string; user?: User }>
-        ) {
-            state.token = action.payload.token;
-            if (action.payload.user) state.user = action.payload.user;
-            localStorage.setItem('token', action.payload.token);
-        },
-        setUser(state, action: PayloadAction<User | null>) {
-            state.user = action.payload;
+        setToken(state, { payload }: PayloadAction<string | null>) {
+            state.token = payload;
+            if (payload) localStorage.setItem('token', payload);
+            else localStorage.removeItem('token');
         },
         logout(state) {
             state.token = null;
-            state.user = null;
             localStorage.removeItem('token');
         },
     },
 });
 
-export const { setCredentials, setUser, logout } = authSlice.actions;
-export const authReducer = authSlice.reducer;
+export const { setToken, logout } = slice.actions;
+export default slice.reducer;
+
+// селектор при желании
+export const selectToken = (s: { auth: AuthState }) => s.auth.token;

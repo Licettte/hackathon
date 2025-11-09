@@ -1,7 +1,12 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useLoginMutation } from 'features/auth/api';
+import { useAppDispatch } from 'app/store/hooks';
+import {
+    useLoginMutation,
+    useStartOnboardingMutation,
+} from 'features/auth/api';
+import { setToken } from 'features/auth/model/authSlice';
 import { Button, Input } from 'shared/ui';
 import { useLoginForm } from 'widgets/login/lib/useLoginForm';
 import { Agreement } from 'widgets/login/ui/agreement/Agreement';
@@ -21,8 +26,13 @@ const TXT = {
 };
 
 export const Login = () => {
+    const dispatch = useAppDispatch();
+
     const navigate = useNavigate();
-    const [login, { isSuccess }] = useLoginMutation();
+    const [login, { isSuccess, data }] = useLoginMutation();
+
+    const [start, { isSuccess: isSuccessStartData, data: responseStartData }] =
+        useStartOnboardingMutation();
 
     const { register, validate } = useLoginForm();
 
@@ -37,12 +47,25 @@ export const Login = () => {
             return;
         }
         if (!validate()) return;
-        login({ email: 'user1@example.com', password: '123' }); //todo добавить данные с инпута
+        login({ email: 'team205-1@example.com', password: '123' }); //todo добавить данные с инпута
     };
 
     useEffect(() => {
-        if (isSuccess) navigate('/onboarding', { replace: true });
+        if (isSuccess) {
+            dispatch(setToken(String(data?.accessToken)));
+            start();
+        }
     }, [isSuccess]);
+
+    useEffect(() => {
+        if (isSuccessStartData) {
+            console.log(responseStartData, 'responseStartData');
+            navigate('/onboarding', {
+                state: { jobId: responseStartData.jobId },
+                replace: true,
+            });
+        }
+    }, [isSuccessStartData]);
 
     return (
         <div className={styles.card}>
