@@ -10,7 +10,7 @@ export type OnboardingProgress = {
 };
 export type OnboardingDone = {
     obligationsDetected: number;
-    payments: userTransaction[];
+    payments: userTransaction;
 };
 
 type StreamState = {
@@ -71,6 +71,7 @@ export const onboardingApi = createApi({
                             s.done = d;
                             s.progress = { phase: 'DONE', progress: 100 };
                         });
+                        // @ts-ignore
                         dispatch(setUserTransaction(d.payments));
                     } catch {
                     } finally {

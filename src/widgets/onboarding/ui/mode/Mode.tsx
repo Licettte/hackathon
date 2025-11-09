@@ -1,30 +1,17 @@
-import { FC, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 
 import { Button } from 'shared/ui';
-import { useOnboardingSse } from 'widgets/login/lib/useOnboardingSse';
 
 import styles from './Mode.module.scss';
 
 type ModeValue = 'semi' | 'auto';
 
-type ModeProps = {
-    value?: ModeValue;
-    onChange?: (v: ModeValue) => void;
-};
-
-type ModeStatus = 'auto' | 'semi';
-
-export const Mode: FC<ModeProps> = ({ value, onChange }) => {
+export const Mode = () => {
     const navigate = useNavigate();
 
-    const [modeStatus, setModeStatus] = useState<ModeStatus>('auto');
-
-    const onClick = (mode: ModeStatus) => {
-        setModeStatus(mode);
-
-        navigate('/cabinet', { replace: true });
+    const handleClick = (mode: ModeValue) => {
+        navigate('/connection', { replace: true, state: { mode: mode } });
     };
 
     return (
@@ -37,12 +24,8 @@ export const Mode: FC<ModeProps> = ({ value, onChange }) => {
                     <Button
                         label='Полуавто'
                         color='blue'
-                        className={clsx(
-                            styles.cta,
-                            modeStatus === 'semi' && styles.active
-                        )}
-                        onClick={() => onClick}
-                        aria-pressed={modeStatus === 'semi'}
+                        className={clsx(styles.cta)}
+                        onClick={() => handleClick('semi')}
                     />
                 </div>
 
@@ -53,12 +36,8 @@ export const Mode: FC<ModeProps> = ({ value, onChange }) => {
                     <Button
                         label='Авто'
                         color='green'
-                        className={clsx(
-                            styles.cta,
-                            modeStatus === 'auto' && styles.active
-                        )}
-                        onClick={() => onClick}
-                        aria-pressed={modeStatus === 'auto'}
+                        className={clsx(styles.cta)}
+                        onClick={() => handleClick('auto')}
                     />
                 </div>
             </div>

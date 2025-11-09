@@ -1,5 +1,5 @@
-.sm   { --w: 220px; --h: 44px; }
-.md   { --w: 390px; --h: 58px; }
+.sm   { --w: 204x; --h: 53px; }
+.md   { --w: 390px; --h: 67px; }
 .lg   { --w: 340px; --h: 44px; }
 .full { --w: 100%;  --h: 44px; }
 
@@ -8,7 +8,7 @@
   height: var(--h);
   display: block;
   position: relative;
-  border-radius: 35px;
+  border-radius: 30px;
   background: var(--well);
   box-shadow:
           18px 18px 36px var(--shadow),
@@ -20,11 +20,17 @@
     inset: 6px;
     border-radius: 30px;
     background: linear-gradient(180deg, var(--cavity1), var(--cavity2));
+    box-shadow:
+            inset 8px 8px 14px rgba(0,0,0,.55),
+            inset -6px -6px 12px rgba(255,255,255,.04);
     pointer-events: none;
   }
 
   &:has(input:focus)::before{
     background: #0e3649;
+    box-shadow:
+            inset 8px 8px 16px rgba(0,0,0,.6),
+            inset -6px -6px 12px rgba(255,255,255,.05),
   }
 }
 
@@ -40,7 +46,6 @@
   font-size: var(--font-regular-13-size);
   padding: 0 30px;
   letter-spacing: .01em;
-  border-radius: 30px;
 
   &::placeholder {
     color: var(--placeholder);
@@ -50,12 +55,9 @@
   }
 
   &:focus::placeholder {
-    text-indent: -150px;
+    text-indent: -250px;
     opacity: .4;
   }
 }
 
-.error {
-  border: aliceblue 1px solid
-}
 

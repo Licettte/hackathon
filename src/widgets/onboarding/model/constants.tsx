@@ -3,8 +3,8 @@ import { SlideItem } from 'widgets/onboarding/model/types';
 import { Mode } from 'widgets/onboarding/ui/mode/Mode';
 import { PaymentsTable } from 'widgets/onboarding/ui/paymentsTable/PaymentsTable';
 
-import cat from '/src/cat.png';
-import catAndSun from '/src/catAndSun.png';
+import cat from '/src/shared/img/cat.png';
+import catAndSun from '/src/shared/img/catAndSun.png';
 
 export const SLIDES: SlideItem[] = [
     {
@@ -30,7 +30,7 @@ export const SLIDES: SlideItem[] = [
     {
         id: 3,
         title: 'В день платежа всё сделаю за Вас',
-        subtitle: 'аккуратно, вовремя, как договорились',
+        subtitle: 'аккуратно, вовремя, как договаривались',
         render: (
             <ImgWrapper
                 src={catAndSun}

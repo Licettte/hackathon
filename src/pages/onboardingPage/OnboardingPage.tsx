@@ -8,10 +8,7 @@ export const OnboardingPage = () => {
 
     const jobId = state?.jobId;
 
-    const { data, isLoading, isFetching, error } = useListenOnboardingQuery(
-        jobId!,
-        { skip: !jobId }
-    );
+    const { data } = useListenOnboardingQuery(jobId!, { skip: !jobId });
 
     return <Onboarding />;
 };

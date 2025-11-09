@@ -1,4 +1,3 @@
-// features/auth/api.ts
 import { baseApi } from 'shared/api/baseApi';
 
 export type LoginRequest = { email: string; password: string };
@@ -19,7 +18,7 @@ export const authApi = baseApi.injectEndpoints({
             query: () => ({
                 url: '/onboarding/start',
                 method: 'POST',
-                body: {}, // пустое тело по ТЗ
+                body: {},
             }),
         }),
     }),

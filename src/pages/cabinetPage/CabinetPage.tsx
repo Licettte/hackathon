@@ -1,6 +1,9 @@
 import { FC, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-import { ReserveAccountMock } from 'entities/reserveAccount/ReserveAccount';
+import { useAppSelector } from 'app/store/hooks';
+import { ReserveAccount } from 'entities/reserveAccount/ReserveAccount';
+import { selectList } from 'features/userTransaction/model/userTransactionSlice';
 import { Button } from 'shared/ui/buttons/button/Button';
 import { Flex } from 'shared/ui/flex/Flex';
 import {
@@ -9,6 +12,7 @@ import {
 } from 'shared/ui/ProgressIndicator/ProgressIndicator';
 import { SegmentedControl } from 'shared/ui/segmentedControl/SegmentedControl';
 import { ObligationsTable } from 'shared/ui/table/Table';
+import { Cabinet } from 'widgets/cabinet/Cabinet';
 import { CreditCard } from 'widgets/creditCard/ui/CreditCard';
 // import { ExplanationCarousel } from 'shared/ui/сarousel/Carousel';
 
@@ -27,53 +31,40 @@ const items: any[] = [
 ];
 
 export const CabinetPage: FC<CabinetPageProps> = () => {
-    const [val, setVal] = useState('vtb');
+    const { state } = useLocation() as { state?: { mode?: string } };
+    const userTransaction = useAppSelector(selectList);
 
-    const ctrl = useProgressController({
-        autoStep: 4,
-        autoInterval: 600,
-        cap: 95,
-    });
-    const steps = items.map((it, i) => ({
-        ...it,
-        state:
-            ctrl.value >= (i + 1) * (100 / items.length) - 10
-                ? 'done'
-                : 'pending',
-    }));
+    //
+    // const [val, setVal] = useState('vtb');
+    //
+    // const ctrl = useProgressController({
+    //     autoStep: 4,
+    //     autoInterval: 600,
+    //     cap: 95,
+    // });
+    // const steps = items.map((it, i) => ({
+    //     ...it,
+    //     state:
+    //         ctrl.value >= (i + 1) * (100 / items.length) - 10
+    //             ? 'done'
+    //             : 'pending',
+    // }));
     return (
-        <Flex justify='space-between' align='center' gap={12} dir='column'>
-            <SegmentedControl
-                options={opts}
-                value={val}
-                onChange={(v) => setVal(v)}
-            />
-            <CreditCard number={9999} bankTitle={val} bankLogo='' />
+        <Cabinet />
+        //
+        // {/*<SegmentedControl*/}
+        // {/*    options={opts}*/}
+        // {/*    value={val}*/}
+        // {/*    onChange={(v) => setVal(v)}*/}
+        // {/*/>*/}
+        // {/*<CreditCard number={9999} bankTitle={val} bankLogo='' />*/}
+        //
+        // {/*<ReserveAccountMock userId={1} planTotalRub={13450} />*/}
+        //
 
-            <ReserveAccountMock userId={1} planTotalRub={13450} />
+        //
 
-            <ProgressIndicator
-                title='Анализ обязательных платежей'
-                note='Подготавливаем план на месяц…'
-                value={ctrl.value}
-                running={ctrl.running}
-                items={steps}
-                footer={
-                    ctrl.value >= 100 ? (
-                        <span>Готово! Показываю найденные платежи</span>
-                    ) : null
-                }
-            />
-            {/*<ExplanationCarousel />*/}
-
-            <ObligationsTable
-                data={[
-                    { id: '1', name: 'ЖКХ', amount: 5000, dueDay: 5 },
-                    { id: '2', name: 'Кредит', amount: 8000, dueDay: 15 },
-                ]}
-            />
-
-            <Button color='black' label='История операций' size='sm' />
-        </Flex>
+        //
+        // {/*<Button color='black' label='История операций' size='sm' />*/}
     );
 };

@@ -1,4 +1,3 @@
-// features/userTransaction/model/userTransactionSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type Payment = {
@@ -17,13 +16,16 @@ const userTransactionSlice = createSlice({
     initialState,
     reducers: {
         setUserTransaction: (state, { payload }: PayloadAction<Payment[]>) => {
-            console.log(payload, 'payload');
             state.list = payload;
         },
         resetUserTransaction: () => initialState,
+    },
+    selectors: {
+        selectList: (state) => state.list,
     },
 });
 
 export const { setUserTransaction, resetUserTransaction } =
     userTransactionSlice.actions;
+export const { selectList } = userTransactionSlice.selectors;
 export default userTransactionSlice.reducer;

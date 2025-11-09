@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import qwe1 from '../../../ship.jpg';
-import qwe from '../../../text5.jpg';
+import qwe1 from 'shared/img/ship.jpg';
+import qwe from 'shared/img/text5.jpg';
 
 import s from './CreditCard.module.scss';
 

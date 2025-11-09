@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import { ConnectionPage } from 'pages/connectionPage/ConnectionPage';
 import { OnboardingPage } from 'pages/onboardingPage/OnboardingPage';
 
 import { store } from './app/store/store';
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
     { path: '/', element: <App /> },
     { path: '/cabinet', element: <CabinetPage /> }, //todo сделать lazy
     { path: '/onboarding', element: <OnboardingPage /> }, //todo сделать lazy
+    { path: '/connection', element: <ConnectionPage /> }, //todo сделать lazy
     // { path: '/app/offline-api', element: <><App /><OfflineApiDemo /></> },
 ]);
 

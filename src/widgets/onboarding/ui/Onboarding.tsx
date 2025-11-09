@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import { Button, Flex } from 'shared/ui';
-import { useOnboardingSse } from 'widgets/login/lib/useOnboardingSse';
 import { SLIDES } from 'widgets/onboarding/model/constants';
 import { OnboardingCard } from 'widgets/onboarding/ui/onboardingCard/OnboardingCard';
 import { ProgressBar } from 'widgets/onboarding/ui/progressBar/ProgressBar';
