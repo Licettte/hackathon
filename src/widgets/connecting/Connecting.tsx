@@ -37,7 +37,8 @@ export const Connecting = () => {
     );
 
     const handleActivateClick = () => {
-        setReserveSettings({ percentOfSalary: 40 });
+        // @ts-ignore
+        setReserveSettings({ percentOfSalary: 40, payments: [] });
     };
 
     const handleAddClick = () => {
@@ -52,13 +53,13 @@ export const Connecting = () => {
         category: string;
         amountRub: number;
         day: number;
-        accountNumber: number;
+        accountId: number;
     }) => {
         const payload = {
             category: data.category,
             amountRub: data.amountRub,
             day: data.day,
-            accountNumber: data.accountNumber,
+            accountId: data.accountId,
         };
 
         createUserTransaction(payload);

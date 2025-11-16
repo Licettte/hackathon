@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { baseApi } from 'shared/api/baseApi';
 
 import type { Payment } from '../model/userTransactionSlice';
 
@@ -6,7 +6,7 @@ export type CreatePaymentRequest = {
     category: string;
     amountRub: number;
     day: number;
-    accountNumber: number;
+    accountId: number;
 };
 
 export type UpdatePaymentRequest = {
@@ -16,14 +16,11 @@ export type UpdatePaymentRequest = {
     day?: number;
 };
 
-export const userCrudTransactionApi = createApi({
-    reducerPath: 'userCrudTransactionApi',
-    baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
-    tagTypes: ['UserCrudTransaction'],
+export const userCrudTransactionApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         createUserTransaction: builder.mutation<Payment, CreatePaymentRequest>({
             query: (body) => ({
-                url: '/obligation',
+                url: '/obligations',
                 method: 'POST',
                 body,
             }),
@@ -31,7 +28,7 @@ export const userCrudTransactionApi = createApi({
         }),
         updateUserTransaction: builder.mutation<Payment, UpdatePaymentRequest>({
             query: ({ id, ...body }) => ({
-                url: `/obligation/${id}`,
+                url: `/obligations/${id}`,
                 method: 'PUT',
                 body,
             }),
@@ -42,7 +39,7 @@ export const userCrudTransactionApi = createApi({
         }),
         deleteUserTransactionBackend: builder.mutation<void, string>({
             query: (id) => ({
-                url: `/obligation/${id}`,
+                url: `/obligations/${id}`,
                 method: 'DELETE',
             }),
             invalidatesTags: (_result, _error, id) => [

@@ -13,5 +13,7 @@ export const baseApi = createApi({
             return headers;
         },
     }),
+    tagTypes: ['UserCrudTransaction', 'Reserve'],
+
     endpoints: () => ({}),
 });

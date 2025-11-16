@@ -13,7 +13,7 @@ type ConnectingModalProps = {
         category: string;
         amountRub: number;
         day: number;
-        accountNumber: string;
+        accountId: string;
     }) => void;
 };
 
@@ -21,14 +21,14 @@ type FormState = {
     category: string;
     amountRub: string;
     day: string;
-    accountNumber: string;
+    accountId: string;
 };
 
 const initialForm: FormState = {
     category: '',
     amountRub: '0',
     day: '1',
-    accountNumber: '0',
+    accountId: '0',
 };
 
 export const ConnectingModal: FC<ConnectingModalProps> = ({
@@ -74,7 +74,7 @@ export const ConnectingModal: FC<ConnectingModalProps> = ({
         // const normalized = value.replace(/\s/g, '');
         setForm((prev) => ({
             ...prev,
-            accountNumber: value,
+            accountId: value,
         }));
     };
 
@@ -86,7 +86,7 @@ export const ConnectingModal: FC<ConnectingModalProps> = ({
 
         if (
             !form.category.trim() ||
-            !form.accountNumber.trim() ||
+            !form.accountId.trim() ||
             Number.isNaN(amountNumber) ||
             amountNumber <= 0 ||
             Number.isNaN(dayNumber) ||
@@ -100,7 +100,7 @@ export const ConnectingModal: FC<ConnectingModalProps> = ({
             category: form.category.trim(),
             amountRub: amountNumber,
             day: dayNumber,
-            accountNumber: form.accountNumber.trim(),
+            accountId: form.accountId.trim(),
         });
 
         handleClose();
@@ -155,7 +155,7 @@ export const ConnectingModal: FC<ConnectingModalProps> = ({
                     <div className={styles.fieldLabel}>Номер счета</div>
                     <InputNumber
                         type='text'
-                        value={form.accountNumber
+                        value={form.accountId
                             .replace(/\s/g, '')
                             .replace(/(\d{4})/g, '$1 ')
                             .trim()}

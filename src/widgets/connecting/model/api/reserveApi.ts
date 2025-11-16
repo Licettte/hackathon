@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { baseApi } from 'shared/api/baseApi';
 
 export type SetReserveRequest = {
     percentOfSalary: number;
@@ -9,10 +9,7 @@ export type ReserveSettings = {
     percentOfSalary: number;
 };
 
-export const reserveApi = createApi({
-    reducerPath: 'reserveApi',
-    baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
-    tagTypes: ['Reserve'],
+export const reserveApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         setReserveSettings: builder.mutation<
             ReserveSettings,
