@@ -52,13 +52,13 @@ export const Connecting = () => {
         category: string;
         amountRub: number;
         day: number;
-        countNumber: number;
+        accountNumber: number;
     }) => {
         const payload = {
             category: data.category,
             amountRub: data.amountRub,
             day: data.day,
-            countNumber: data.countNumber,
+            accountNumber: data.accountNumber,
         };
 
         createUserTransaction(payload);
@@ -67,7 +67,9 @@ export const Connecting = () => {
     };
 
     useEffect(() => {
-        navigate('/cabinet');
+        if (isSuccess) {
+            navigate('/cabinet');
+        }
     }, [isSuccess]);
 
     return (

@@ -6,6 +6,7 @@ export type CreatePaymentRequest = {
     category: string;
     amountRub: number;
     day: number;
+    accountNumber: number;
 };
 
 export type UpdatePaymentRequest = {
@@ -31,7 +32,7 @@ export const userCrudTransactionApi = createApi({
         updateUserTransaction: builder.mutation<Payment, UpdatePaymentRequest>({
             query: ({ id, ...body }) => ({
                 url: `/obligation/${id}`,
-                method: 'PUT', // или PATCH/POST, как на бэке
+                method: 'PUT',
                 body,
             }),
             invalidatesTags: (_result, _error, { id }) => [

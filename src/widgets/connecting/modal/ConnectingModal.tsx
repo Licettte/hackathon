@@ -13,7 +13,7 @@ type ConnectingModalProps = {
         category: string;
         amountRub: number;
         day: number;
-        countNumber: string;
+        accountNumber: string;
     }) => void;
 };
 
@@ -21,14 +21,14 @@ type FormState = {
     category: string;
     amountRub: string;
     day: string;
-    countNumber: string;
+    accountNumber: string;
 };
 
 const initialForm: FormState = {
     category: '',
     amountRub: '0',
     day: '1',
-    countNumber: '0',
+    accountNumber: '0',
 };
 
 export const ConnectingModal: FC<ConnectingModalProps> = ({
@@ -71,10 +71,10 @@ export const ConnectingModal: FC<ConnectingModalProps> = ({
     };
 
     const handleChangeCountNumber = (value: string) => {
-        const normalized = value.replace(/\s/g, '');
+        // const normalized = value.replace(/\s/g, '');
         setForm((prev) => ({
             ...prev,
-            countNumber: normalized,
+            accountNumber: value,
         }));
     };
 
@@ -86,7 +86,7 @@ export const ConnectingModal: FC<ConnectingModalProps> = ({
 
         if (
             !form.category.trim() ||
-            !form.countNumber.trim() ||
+            !form.accountNumber.trim() ||
             Number.isNaN(amountNumber) ||
             amountNumber <= 0 ||
             Number.isNaN(dayNumber) ||
@@ -100,7 +100,7 @@ export const ConnectingModal: FC<ConnectingModalProps> = ({
             category: form.category.trim(),
             amountRub: amountNumber,
             day: dayNumber,
-            countNumber: form.countNumber.trim(),
+            accountNumber: form.accountNumber.trim(),
         });
 
         handleClose();
@@ -155,7 +155,7 @@ export const ConnectingModal: FC<ConnectingModalProps> = ({
                     <div className={styles.fieldLabel}>Номер счета</div>
                     <InputNumber
                         type='text'
-                        value={form.countNumber
+                        value={form.accountNumber
                             .replace(/\s/g, '')
                             .replace(/(\d{4})/g, '$1 ')
                             .trim()}

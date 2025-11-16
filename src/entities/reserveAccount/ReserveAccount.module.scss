@@ -17,7 +17,33 @@
   color: var(--primary-text-color, #e8edf6);
   box-shadow:
           0 18px 36px rgba(10,12,15,.6),
-          inset 0 1px 0 rgba(255,255,255,.03);
+          inset 0 1px 0 rgba(255,255,255,.03);.listHeader {
+  display: grid;
+  grid-template-columns: 0.4fr 0.3fr 0.4fr;
+  padding: 0 12px 8px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+  .colCategory {
+    text-align: left;
+  }
+
+  .colDay {
+    text-align: center;
+  }
+
+  .colStatus {
+    text-align: right;
+  }
+
+  /* если будешь включать сумму */
+  /*
+  .colAmount {
+    text-align: right;
+  }
+  */
+
 }
 
 .cardHead {
@@ -26,10 +52,9 @@
 }
 .cardTitle {
   margin: 0;
-  font-size: clamp(18px, 2.4vw, 22px);
+  font-size:var(--font-regular-17-size);
   font-weight: 800;
   letter-spacing: .2px;
-  color: #cfefff;
   text-shadow: 0 2px 14px rgba(0,0,0,.35);
   padding: 5px;
 }
@@ -60,9 +85,9 @@
 .list { display: grid; gap: 12px; margin: 6px 0 6px; }
 .row {
   display: grid;
-  grid-template-columns: 1.1fr 1fr .35fr .8fr;
+  grid-template-columns: 0.4fr 0.3fr 0.4fr;
   align-items: center;
-  gap: 14px;
+  gap: 49px;
   padding: 12px 14px;
   border-radius: 16px;
   background: rgba(255,255,255,.03);
@@ -80,9 +105,13 @@
 }
 
 .status {
-  padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px;
-  border:1px solid rgba(255,255,255,.06); text-align:center;
+  padding:6px 10px; border-radius:999px;
+  font-weight:700;
+  font-size: 20px;;
+  border:1px solid rgba(255,255,255,.06);
+  text-align:center;
 }
+
 .stOk   { background: rgba(43,180,107,.18); color:#b6f3d1; }
 .stInfo { background: rgba(18,179,214,.18); color:#aeefff; }
 .stWarn { background: rgba(255,92,92,.18); color:#ffd0d0; }
@@ -93,9 +122,62 @@
   border:1px solid rgba(255,255,255,.06);
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
 }
-.badgeBlue   { background: linear-gradient(180deg,#0b3a55,#072c42); }
-.badgePurple { background: linear-gradient(180deg,#6d4eff,#4b2ce0); }
-.badgeCyan   { background: linear-gradient(180deg,#16a3c8,#0b6a86); }
-.badgeGreen  { background: linear-gradient(180deg,#1d8a62,#0f5c43); }
-.badgeOrange { background: linear-gradient(180deg,#e08a2a,#a65300); }
-.badgeTeal   { background: linear-gradient(180deg,#2b9f8b,#136f63); }
+.badgeBlue   {
+  background: linear-gradient(180deg,#0b3a55,#072c42);
+  font-size: 20px;
+}
+
+.badgePurple {
+  background: linear-gradient(180deg,#6d4eff,#4b2ce0);
+  font-size: 20px;
+}
+
+.badgeCyan   {
+  background: linear-gradient(180deg,#16a3c8,#0b6a86);
+  font-size: 20px;
+}
+
+.badgeGreen  {
+  background: linear-gradient(180deg,#1d8a62,#0f5c43);
+  font-size: 20px;
+}
+.badgeOrange {
+  background: linear-gradient(180deg,#e08a2a,#a65300);
+  font-size: 20px;
+}
+
+.badgeTeal   {
+  background: linear-gradient(180deg,#2b9f8b,#136f63);
+  font-size: 20px;
+}
+
+
+.listHeader {
+  display: grid;
+  grid-template-columns: 0.4fr 0.3fr 0.4fr;
+  padding: 0 12px 8px;
+  opacity: 0.7;
+  font-size: 23px;
+}
+
+.colCategory {
+  text-align: left;
+  font-size: 23px;
+}
+
+.colDay {
+  text-align: center;
+  font-size: 23px;
+}
+
+.colStatus {
+  text-align: right;
+  font-size: 23px;
+}
+
+/* если будешь включать сумму */
+/*
+.colAmount {
+  text-align: right;
+}
+*/

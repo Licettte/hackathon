@@ -20,8 +20,6 @@ export const Cabinet: FC<CabinetProps> = ({}) => {
             align='center'
         >
             <ReserveAccount />
-
-            <img src={img} alt='' style={{ width: '25%' }} />
         </Flex>
     );
 };

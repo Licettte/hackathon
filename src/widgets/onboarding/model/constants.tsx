@@ -10,7 +10,7 @@ export const SLIDES: SlideItem[] = [
     {
         id: 1,
         title: 'Посчитаю все ваши обязательные платежи',
-        subtitle: 'Итог: 30 тыс',
+        subtitle: 'Итог: 42 427.12',
         render: <PaymentsTable />,
     },
     {

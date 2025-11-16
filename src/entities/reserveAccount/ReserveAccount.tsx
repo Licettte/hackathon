@@ -1,31 +1,16 @@
 import { FC, useState } from 'react';
 
+import { useAppSelector } from 'app/store/hooks';
+import { selectList } from 'features/userTransaction/model/userTransactionSlice';
 import { Button, Flex } from 'shared/ui';
 
 import styles from './ReserveAccount.module.scss';
 
 type ReserveAccountProps = {};
 
-const fmtRub = (n: number) =>
-    n.toLocaleString('ru-RU', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-    });
-
 export const ReserveAccount: FC<ReserveAccountProps> = () => {
     const [balance] = useState(0);
-
-    const upcoming = [
-        { id: '1', category: 'ЖКХ', amount: 5000, day: 5, status: 'Оплачен' },
-        {
-            id: '2',
-            category: 'Кредит',
-            amount: 7000,
-            day: 9,
-            status: 'Ожидает',
-        },
-        { id: '3', category: 'Связь', amount: 790, day: 12, status: 'Ожидает' },
-    ];
+    const data = useAppSelector(selectList);
 
     const badgeClass = (c: string) =>
         c === 'ЖКХ'
@@ -49,15 +34,14 @@ export const ReserveAccount: FC<ReserveAccountProps> = () => {
 
     return (
         <section className={styles.wrap}>
-            {/* Левая колонка — счёт */}
-            <Flex dir='column' className={styles.card}>
+            <Flex dir='column' className={styles.card} justify='space-between'>
                 <div className={styles.cardHead}>
                     <h4 className={styles.cardTitle}>Сберегательный счёт</h4>
                 </div>
 
                 <div className={styles.balanceBox}>
                     <div className={styles.balanceLabel}>Баланс</div>
-                    <div className={styles.balanceValue}>{fmtRub(balance)}</div>
+                    <div className={styles.balanceValue}>{balance}</div>
                     <div className={styles.balanceHint}>
                         Счёт для обязательных платежей
                     </div>
@@ -76,17 +60,19 @@ export const ReserveAccount: FC<ReserveAccountProps> = () => {
                     <h4 className={styles.cardTitle}>Ближайшие платежи</h4>
                 </div>
 
+                <div className={styles.listHeader}>
+                    <span className={styles.colCategory}>Категория</span>
+                    <span className={styles.colDay}>День</span>
+                    <span className={styles.colStatus}>Статус</span>
+                </div>
+
                 <div className={styles.list}>
-                    {upcoming.map((p) => (
+                    {data.map((p) => (
                         <div className={styles.row} key={p.id}>
                             <span
                                 className={`${styles.badge} ${badgeClass(p.category)}`}
                             >
                                 {p.category}
-                            </span>
-
-                            <span className={styles.amount}>
-                                {fmtRub(p.amount)}
                             </span>
 
                             <span className={styles.day} title='День списания'>
@@ -103,7 +89,7 @@ export const ReserveAccount: FC<ReserveAccountProps> = () => {
                 </div>
 
                 <Button
-                    label='Подробнее'
+                    label='Редактировать'
                     color='green'
                     size='sm'
                     className={styles.blockBtn}
