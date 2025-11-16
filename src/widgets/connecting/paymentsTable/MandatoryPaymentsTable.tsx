@@ -1,6 +1,4 @@
-// MandatoryPaymentsTable.tsx
 import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
     ColumnDef,
     flexRender,
@@ -9,11 +7,15 @@ import {
 } from '@tanstack/react-table';
 import clsx from 'clsx';
 
-import { useAppSelector } from 'app/store/hooks';
-import { selectList } from 'features/userTransaction/model/userTransactionSlice';
-import { userTransaction } from 'features/userTransaction/types';
+import { useAppDispatch, useAppSelector } from 'app/store/hooks';
+import { useDeleteUserTransactionBackendMutation } from 'features/userTransaction/api/userCrudTransactionApi';
+import {
+    Payment,
+    selectList,
+} from 'features/userTransaction/model/userTransactionSlice';
 import trash from 'shared/img/trash.png';
-import { Button, Flex, Input } from 'shared/ui';
+import { Button, Flex } from 'shared/ui';
+import { SummSell } from 'widgets/connecting/paymentsTable/SummSell';
 
 import s from './MandatoryPaymentsTable.module.scss';
 
@@ -31,13 +33,8 @@ const statusBadge: Record<string, string> = {
     Просрочен: s.stWarn,
 };
 
-const fmtRub = (n: number) =>
-    `${n.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
 export const MandatoryPaymentsTable = () => {
-    //[start]=useMu
-    const navigate = useNavigate();
-
+    const dispatch = useAppDispatch();
     const data = useAppSelector(selectList);
     const [expanded, setExpanded] = useState(false);
 
@@ -46,18 +43,9 @@ export const MandatoryPaymentsTable = () => {
         [data, expanded]
     );
 
-    const totalAll = useMemo(
-        () => data.reduce((acc, x) => acc + (Number(x.amountRub) || 0), 0),
-        [data]
-    );
+    const [deleteUserTransaction] = useDeleteUserTransactionBackendMutation();
 
-    const onClick = () => {
-        navigate('/cabinet');
-
-        // start(); //todo данные, которые отредактровал пользователь из стора взять
-    };
-
-    const columns = useMemo<ColumnDef<Required<userTransaction>>[]>(
+    const columns = useMemo<ColumnDef<Payment>[]>(
         () => [
             {
                 header: 'Платёж',
@@ -79,12 +67,8 @@ export const MandatoryPaymentsTable = () => {
             {
                 header: 'Сумма',
                 accessorKey: 'amountRub',
-                cell: ({ getValue }) => (
-                    <span className={s.num}>
-                        <Input value={fmtRub(Number(getValue()))} size='sm' />
-                        {/*todo вынсти в отдельный сell. менять значение в инпуте , сделать перерасчет итоговой суммы*/}
-                    </span>
-                ),
+                // @ts-ignore
+                cell: SummSell,
             },
             {
                 header: 'Дата',
@@ -141,10 +125,16 @@ export const MandatoryPaymentsTable = () => {
                         ))
                     )}
                 </div>
+
                 <div className={s.body}>
                     {table.getRowModel().rows.map((r) => (
-                        <Flex gap={15} justify='center' align='center'>
-                            <div key={r.id} className={s.tr}>
+                        <Flex
+                            key={r.id}
+                            gap={15}
+                            justify='center'
+                            align='center'
+                        >
+                            <div className={s.tr}>
                                 {r.getVisibleCells().map((c) => (
                                     <div key={c.id} className={s.td}>
                                         {flexRender(
@@ -159,10 +149,14 @@ export const MandatoryPaymentsTable = () => {
                                 src={trash}
                                 alt='удалить'
                                 className={s.trash}
+                                onClick={() =>
+                                    deleteUserTransaction(r.original.id)
+                                }
                             />
                         </Flex>
                     ))}
                 </div>
+
                 <div className={s.footer}>
                     {hasMore && (
                         <Button
@@ -172,24 +166,7 @@ export const MandatoryPaymentsTable = () => {
                             className={s.moreBtn}
                         />
                     )}
-
-                    <div
-                        className={s.totalPill}
-                        aria-label='Итог по всем платежам'
-                    >
-                        <span className={s.totalLabel}>Итог:</span>
-                        <span className={s.totalValue}>{fmtRub(totalAll)}</span>
-                    </div>
                 </div>
-                <Flex dir='column' gap={15} align='center'>
-                    <Button
-                        label='Активировать'
-                        color='green'
-                        className={s.actBtn}
-                        onClick={onClick}
-                    />
-                    <span> 0 ₽ / 3 месяца </span>
-                </Flex>
             </div>
         </div>
     );

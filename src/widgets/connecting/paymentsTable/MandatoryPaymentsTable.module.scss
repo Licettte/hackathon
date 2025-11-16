@@ -103,15 +103,7 @@
   box-shadow: 0 8px 24px rgba(0,0,0,.4);
 }
 
-.totalPill {
-  display: inline-flex; align-items: baseline; gap: 10px;
-  padding: 10px 16px; border-radius: 14px;
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-  border: 1px solid rgba(255,255,255,.08);
-  box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
-}
-.totalLabel { opacity: .8; font-weight: 600; }
-.totalValue { font-weight: 800; letter-spacing: .2px; font-variant-numeric: tabular-nums; }
+
 
 .actBtn{
   margin-top:50px;
